@@ -39,7 +39,7 @@ export function LandingPage() {
                             <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
                                 <CalendarDays className="w-5 h-5 text-white" />
                             </div>
-                            <span className="text-xl font-bold text-gray-900">Vaidya</span>
+                            <span className="text-xl font-bold text-gray-900">Cal.in</span>
                         </div>
 
                         {/* Desktop Navigation */}
@@ -157,10 +157,10 @@ export function LandingPage() {
                                 <div className="p-6 border-b border-gray-100">
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-semibold">
-                                            AV
+                                            JD
                                         </div>
                                         <div>
-                                            <p className="text-sm text-gray-500">Arjun Vaidya</p>
+                                            <p className="text-sm text-gray-500">John Doe</p>
                                             <h3 className="font-semibold text-gray-900">Photoshoot</h3>
                                             <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
                                                 <span className="flex items-center gap-1">
@@ -259,7 +259,7 @@ export function LandingPage() {
                 <div className="max-w-7xl mx-auto text-center">
                     <div className="inline-flex items-center gap-2 mb-6 text-sm text-gray-500">
                         <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
-                        What is Vaidya
+                        What is Cal.in
                     </div>
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
                         With us, appointment scheduling{' '}
@@ -391,8 +391,8 @@ export function LandingPage() {
                             </div>
                             <div className="bg-gray-50 rounded-xl p-4">
                                 <div className="flex items-center gap-2 px-4 py-3 bg-white rounded-lg border border-gray-200">
-                                    <span className="text-gray-400">vaidya.com/</span>
-                                    <span className="text-purple-600 font-medium">arjun</span>
+                                    <span className="text-gray-400">cal.in/</span>
+                                    <span className="text-purple-600 font-medium">john</span>
                                 </div>
                             </div>
                         </div>
@@ -484,7 +484,7 @@ export function LandingPage() {
                             AI-powered calls
                         </h3>
                         <p className="text-gray-600 max-w-2xl mx-auto mt-6">
-                            Turn scheduling into a conversation. Vaidya AI uses lifelike agents to book
+                            Turn scheduling into a conversation. Cal.in AI uses lifelike agents to book
                             meetings, send reminders and follow up all through natural phone calls.
                         </p>
                     </div>
@@ -595,7 +595,7 @@ export function LandingPage() {
                                 with your meetings
                             </h2>
                             <p className="text-gray-600 mb-8">
-                                Vaidya works with all apps already in your flow ensuring everything
+                                Cal.in works with all apps already in your flow ensuring everything
                                 works perfectly together.
                             </p>
                             <div className="flex flex-wrap gap-4">
@@ -646,7 +646,7 @@ export function LandingPage() {
                         </span>
                     </h2>
                     <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                        Join thousands of professionals who trust Vaidya for their scheduling needs.
+                        Join thousands of professionals who trust Cal.in for their scheduling needs.
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -687,7 +687,7 @@ export function LandingPage() {
                                 <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
                                     <CalendarDays className="w-5 h-5 text-white" />
                                 </div>
-                                <span className="text-xl font-bold text-gray-900">Vaidya</span>
+                                <span className="text-xl font-bold text-gray-900">Cal.in</span>
                             </div>
                             <p className="text-gray-600 text-sm mb-6 max-w-xs">
                                 The open source scheduling infrastructure. Made with ❤️ for everyone.
@@ -741,7 +741,7 @@ export function LandingPage() {
                     {/* Bottom Footer */}
                     <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-sm text-gray-500">
-                            © 2026 Vaidya. All rights reserved.
+                            © 2026 Cal.in. All rights reserved.
                         </p>
                         <div className="flex gap-6">
                             <a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
