@@ -24,6 +24,20 @@ app.use('/api/event-types', eventTypesRouter);
 app.use('/api/availability', availabilityRouter);
 app.use('/api/bookings', bookingsRouter);
 
+// Root route
+app.get('/', (_req, res) => {
+    res.json({
+        message: 'Cal.in API Server',
+        version: '1.0.0',
+        endpoints: {
+            health: '/api/health',
+            eventTypes: '/api/event-types',
+            availability: '/api/availability',
+            bookings: '/api/bookings'
+        }
+    });
+});
+
 // Health check
 app.get('/api/health', (_req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
