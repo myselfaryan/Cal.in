@@ -1,7 +1,11 @@
 export { EventTypesPage } from './EventTypes';
+export { EventTypeEditPage } from './EventTypeEdit';
 export { BookingsPage } from './Bookings';
 export { AvailabilityPage } from './Availability';
+export { AvailabilityEditPage } from './AvailabilityEdit';
 export { PublicBookingPage } from './PublicBooking';
 export { InsightsPage } from './Insights';
 export { WorkflowsPage } from './Workflows';
 export { LandingPage } from './Landing';
+export { TeamsPage } from './Teams';
+export { ReschedulePage } from './Reschedule';
