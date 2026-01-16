@@ -14,22 +14,31 @@ export const eventTypesApi = {
     getAll: () => api.get('/event-types'),
     getById: (id: string) => api.get(`/event-types/${id}`),
     getBySlug: (slug: string) => api.get(`/event-types/slug/${slug}`),
-    create: (data: { title: string; description?: string; duration: number; slug: string }) =>
+    create: (data: { title: string; description?: string; duration: number; slug: string; enabled?: boolean; bookingFields?: any[] }) =>
         api.post('/event-types', data),
-    update: (id: string, data: { title: string; description?: string; duration: number; slug: string }) =>
+    update: (id: string, data: { title?: string; description?: string; duration?: number; slug?: string; enabled?: boolean; bookingFields?: any[] }) =>
         api.put(`/event-types/${id}`, data),
     delete: (id: string) => api.delete(`/event-types/${id}`),
 };
 
-// Availability API
+// Availability API (Schedules)
 export const availabilityApi = {
     getAll: () => api.get('/availability'),
-    update: (id: string, data: { startTime: string; endTime: string; isEnabled: boolean }) =>
-        api.put(`/availability/${id}`, data),
-    bulkUpdate: (data: Array<{ id: string; startTime: string; endTime: string; isEnabled: boolean }>) =>
-        api.put('/availability', data),
-    getTimezone: () => api.get('/availability/timezone'),
-    updateTimezone: (timezone: string) => api.put('/availability/timezone', { timezone }),
+    getById: (id: string) => api.get(`/availability/${id}`),
+    create: (data: { name: string; timeZone?: string }) => api.post('/availability', data),
+    update: (id: string, data: { name?: string; timeZone?: string; isDefault?: boolean }) => api.put(`/availability/${id}`, data),
+    delete: (id: string) => api.delete(`/availability/${id}`),
+    // Bulk update slots for a specific schedule
+    updateSlots: (scheduleId: string, data: Array<{ dayOfWeek: number; startTime: string; endTime: string; isEnabled: boolean }>) =>
+        api.put(`/availability/${scheduleId}/slots`, data),
+    // Date Overrides
+    createOverride: (scheduleId: string, data: { date: string; startTime: string; endTime: string; isEnabled: boolean }) =>
+        api.post(`/availability/${scheduleId}/overrides`, data),
+    updateOverride: (id: string, data: { startTime: string; endTime: string; isEnabled: boolean }) =>
+        api.put(`/availability/overrides/${id}`, data),
+    deleteOverride: (id: string) => api.delete(`/availability/overrides/${id}`),
+    // Legacy global timezone (fallback)
+    getTimezone: () => api.get('/availability/settings/timezone'),
 };
 
 // Bookings API
@@ -45,8 +54,11 @@ export const bookingsApi = {
         date: string;
         startTime: string;
         endTime: string;
+        responses?: any;
     }) => api.post('/bookings', data),
     cancel: (id: string) => api.put(`/bookings/${id}/cancel`),
+    reschedule: (id: string, data: { date: string; startTime: string; endTime: string }) =>
+        api.put(`/bookings/${id}`, data),
 };
 
 export default api;
