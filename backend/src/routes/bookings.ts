@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { db } from '../db/index.js';
 import { bookings, eventTypes, availability } from '../db/schema.js';
-import { eq, and, gte, lte, desc, asc } from 'drizzle-orm';
+import { eq, and, gte, lte, desc, asc, ne } from 'drizzle-orm';
 
 const router = Router();
 
@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
                 createdAt: bookings.createdAt,
                 eventTitle: eventTypes.title,
                 eventDuration: eventTypes.duration,
+                eventSlug: eventTypes.slug,
             })
             .from(bookings)
             .leftJoin(eventTypes, eq(bookings.eventTypeId, eventTypes.id));
@@ -110,7 +111,7 @@ router.get('/available-slots', async (req, res) => {
 // Create a new booking
 router.post('/', async (req, res) => {
     try {
-        const { eventTypeId, bookerName, bookerEmail, date, startTime, endTime } = req.body;
+        const { eventTypeId, bookerName, bookerEmail, date, startTime, endTime, responses } = req.body;
 
         if (!eventTypeId || !bookerName || !bookerEmail || !date || !startTime || !endTime) {
             return res.status(400).json({ error: 'All fields are required' });
@@ -137,6 +138,7 @@ router.post('/', async (req, res) => {
             startTime,
             endTime,
             status: 'confirmed',
+            responses: responses || {},
         }).returning();
 
         res.status(201).json(result[0]);
@@ -167,6 +169,53 @@ router.put('/:id/cancel', async (req, res) => {
     }
 });
 
+// Reschedule/Update a booking
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { date, startTime, endTime } = req.body;
+
+        if (!date || !startTime || !endTime) {
+            return res.status(400).json({ error: 'Date, start time, and end time are required' });
+        }
+
+        // Check if booking exists
+        const booking = await db.select().from(bookings).where(eq(bookings.id, id));
+        if (booking.length === 0) {
+            return res.status(404).json({ error: 'Booking not found' });
+        }
+
+        // Check for existing booking at the same time (excluding current booking)
+        const existing = await db.select()
+            .from(bookings)
+            .where(and(
+                eq(bookings.date, date),
+                eq(bookings.startTime, startTime),
+                eq(bookings.status, 'confirmed'),
+                ne(bookings.id, id) // Exclude current booking
+            ));
+
+        if (existing.length > 0) {
+            return res.status(400).json({ error: 'This time slot is already booked' });
+        }
+
+        const result = await db.update(bookings)
+            .set({
+                date,
+                startTime,
+                endTime,
+                // updatedAt: new Date(), // removed as column doesn't exist
+            })
+            .where(eq(bookings.id, id))
+            .returning();
+
+        res.json(result[0]);
+    } catch (error) {
+        console.error('Error rescheduling booking:', error);
+        res.status(500).json({ error: 'Failed to reschedule booking' });
+    }
+});
+
 // Get single booking
 router.get('/:id', async (req, res) => {
     try {
@@ -182,10 +231,12 @@ router.get('/:id', async (req, res) => {
                 startTime: bookings.startTime,
                 endTime: bookings.endTime,
                 status: bookings.status,
+                responses: bookings.responses,
                 createdAt: bookings.createdAt,
                 eventTitle: eventTypes.title,
                 eventDuration: eventTypes.duration,
                 eventDescription: eventTypes.description,
+                eventSlug: eventTypes.slug,
             })
             .from(bookings)
             .leftJoin(eventTypes, eq(bookings.eventTypeId, eventTypes.id))
