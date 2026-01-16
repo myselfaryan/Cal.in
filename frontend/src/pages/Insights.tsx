@@ -4,13 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 
 export function InsightsPage() {
     return (
-        <div className="p-8">
+        <div className="p-4 sm:p-8 max-w-[1200px] mx-auto">
             {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-2xl font-semibold text-foreground">Insights</h1>
-                <p className="text-sm text-muted-foreground mt-1">
-                    View booking insights across your events
-                </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h1 className="text-2xl font-semibold text-foreground">Insights</h1>
+                    <p className="text-sm text-muted-foreground mt-1">
+                        View booking insights across your events
+                    </p>
+                </div>
             </div>
 
             {/* Hero Section */}
@@ -27,22 +29,22 @@ export function InsightsPage() {
                         </div>
                     </div>
 
-                    <div className="flex gap-4">
-                        <Card className="w-48">
+                    <div className="flex flex-wrap gap-4">
+                        <Card className="flex-1 min-w-[140px]">
                             <CardContent className="p-4">
                                 <p className="text-sm text-muted-foreground mb-1">Bookings</p>
                                 <div className="flex items-center gap-2">
-                                    <span className="text-3xl font-bold">32%</span>
+                                    <span className="text-2xl sm:text-3xl font-bold">32%</span>
                                     <TrendingUp className="w-5 h-5 text-green-500" />
                                 </div>
                             </CardContent>
                         </Card>
-                        <Card className="w-48">
+                        <Card className="flex-1 min-w-[140px]">
                             <CardContent className="p-4">
                                 <p className="text-sm text-muted-foreground mb-1">Most booked</p>
                                 <div className="flex items-center gap-2">
-                                    <Flame className="w-8 h-8 text-orange-500" />
-                                    <span className="text-3xl font-bold">321</span>
+                                    <Flame className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500" />
+                                    <span className="text-2xl sm:text-3xl font-bold">321</span>
                                 </div>
                             </CardContent>
                         </Card>
@@ -51,7 +53,7 @@ export function InsightsPage() {
             </div>
 
             {/* Insight Cards */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <Card className="hover:border-muted-foreground/50 transition-colors cursor-pointer">
                     <CardHeader>
                         <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center mb-2">

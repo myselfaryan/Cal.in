@@ -61,16 +61,16 @@ const standardTemplates = [
 
 export function WorkflowsPage() {
     return (
-        <div className="p-8">
+        <div className="p-4 sm:p-8 max-w-[1200px] mx-auto">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
                     <h1 className="text-2xl font-semibold text-foreground">Workflows</h1>
                     <p className="text-sm text-muted-foreground mt-1">
                         Create workflows to automate notifications and reminders
                     </p>
                 </div>
-                <Button className="gap-2">
+                <Button className="gap-2 sm:w-auto w-full">
                     + New
                 </Button>
             </div>
@@ -92,7 +92,7 @@ export function WorkflowsPage() {
             {/* Cal.ai Templates */}
             <div className="mb-8">
                 <h3 className="text-sm font-medium text-muted-foreground mb-4">Cal.ai templates</h3>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {calAITemplates.map((template, index) => (
                         <Card key={index} className="hover:border-muted-foreground/50 transition-colors cursor-pointer bg-secondary/50">
                             <CardContent className="p-4">
@@ -114,7 +114,7 @@ export function WorkflowsPage() {
             {/* Standard Templates */}
             <div>
                 <h3 className="text-sm font-medium text-muted-foreground mb-4">Standard templates</h3>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {standardTemplates.map((template, index) => (
                         <Card key={index} className="hover:border-muted-foreground/50 transition-colors cursor-pointer">
                             <CardContent className="p-4">
