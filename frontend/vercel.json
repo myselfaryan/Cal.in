@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "https://cal-in-backend.vercel.app/api/$1"
+            "destination": "https://cal-in-diuk.vercel.app/api/$1"
         },
         {
             "source": "/(.*)",
