@@ -12,8 +12,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+const frontendUrl = process.env.FRONTEND_URL?.replace(/\/$/, '') || '*'; // Remove trailing slash
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || '*',
+    origin: frontendUrl,
     credentials: true,
 };
 app.use(cors(corsOptions));
