@@ -35,6 +35,10 @@ export function LandingPage() {
         navigate('/event-types');
     };
 
+    const handleBookNow = () => {
+        navigate('/schedule');
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -51,7 +55,7 @@ export function LandingPage() {
                     <div className="flex items-center gap-4 lg:gap-10">
                         {/* Logo */}
                         <div onClick={handleCTA} className="flex items-center group cursor-pointer">
-                            <span className="text-xl font-black lowercase tracking-tighter group-hover:opacity-60 transition-opacity">Cal.ai</span>
+                            <span className="text-xl font-black lowercase tracking-tighter group-hover:opacity-60 transition-opacity text-black">cal.ai</span>
                         </div>
 
                         {/* Desktop Nav */}
@@ -66,6 +70,13 @@ export function LandingPage() {
                     </div>
 
                     <div className="flex items-center gap-4">
+                        <Button
+                            onClick={handleBookNow}
+                            variant="outline"
+                            className="hidden sm:flex bg-white border-gray-300 hover:bg-gray-50 text-black rounded-full h-10 px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold gap-1 group transition-all shadow-sm"
+                        >
+                            Book a Meeting
+                        </Button>
                         <button onClick={handleCTA} className="hidden sm:block text-[13px] font-semibold hover:opacity-70 transition-opacity">
                             Sign in
                         </button>
@@ -88,6 +99,10 @@ export function LandingPage() {
                         <MobileNavItem label="Developer" onClick={handleCTA} />
                         <MobileNavItem label="Pricing" onClick={handleCTA} />
                         <hr className="border-gray-100 my-2" />
+                        <button onClick={handleBookNow} className="text-lg font-black text-left py-3 px-2 hover:bg-gray-50 rounded-lg transition-colors flex items-center justify-between bg-gray-100">
+                            📅 Book a Meeting
+                            <ArrowRight className="w-5 h-5 opacity-50" />
+                        </button>
                         <button onClick={handleCTA} className="text-lg font-black text-left py-3 px-2 hover:bg-gray-50 rounded-lg transition-colors flex items-center justify-between">
                             Sign in
                             <ArrowRight className="w-5 h-5 opacity-30" />
@@ -474,7 +489,7 @@ export function LandingPage() {
                 <div className="max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-16 sm:gap-24 mb-32 sm:mb-48 px-4 lg:px-0">
                         <div className="col-span-1 sm:col-span-2 space-y-10 sm:space-y-12 text-center sm:text-left">
-                            <div onClick={handleCTA} className="text-3xl font-black lowercase tracking-tighter block hover:opacity-60 transition-opacity cursor-pointer">Cal.ai</div>
+                            <div onClick={handleCTA} className="text-3xl font-black lowercase tracking-tighter block hover:opacity-60 transition-opacity cursor-pointer text-black">cal.ai</div>
                             <p className="text-gray-400 font-bold text-lg sm:text-xl leading-relaxed max-w-sm mx-auto sm:mx-0 text-balance">The better way to schedule meetings for individuals, businesses, and developers.</p>
                             <div className="flex justify-center sm:justify-start gap-8 grayscale opacity-30 h-6">
                                 <TwitterIcon />

@@ -9,3 +9,4 @@ export { WorkflowsPage } from './Workflows';
 export { LandingPage } from './Landing';
 export { TeamsPage } from './Teams';
 export { ReschedulePage } from './Reschedule';
+export { SchedulePage } from './SchedulePage';

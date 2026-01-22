@@ -13,6 +13,7 @@ import {
   LandingPage,
   TeamsPage,
   ReschedulePage,
+  SchedulePage,
 } from '@/pages';
 import './index.css';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
 
           {/* Public booking page - no layout */}
+          <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/book/:slug" element={<PublicBookingPage />} />
           <Route path="/reschedule/:bookingId" element={<ReschedulePage />} />
 
